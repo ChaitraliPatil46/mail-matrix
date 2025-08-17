@@ -2,13 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const path = require("path");
 
 dotenv.config();
 
 const folderRoutes = require("./routes/folderRoutes");
 const emailRoutes = require("./routes/emailRoutes");
 
-const app = express(); // ✅ Initialize app first
+const app = express();
 
 // ✅ Middleware
 app.use(cors());
@@ -24,6 +25,14 @@ app.get("/api/test", (req, res) => res.send("API is working 🎉"));
 
 // ✅ Cron job setup (optional logic inside it)
 require("./cronJob");
+
+// ✅ Serve frontend (after all API routes)
+const buildPath = path.join(__dirname, "build");
+app.use(express.static(buildPath));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(buildPath, "index.html"));
+});
 
 // ✅ Connect to DB and start server
 mongoose.connect(process.env.MONGO_URI)
