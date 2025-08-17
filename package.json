@@ -1,0 +1,17 @@
+{
+  "name": "mail_matrix_gmailapi",
+  "version": "1.0.0",
+  "description": "A modern email organization application that uses AI-powered folders to help you manage your emails efficiently.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "build":"npm install --prefix backend && mpm install --prefix frontend && npm run build --prefix frontend",
+     "start":"npm run start --prefix backend"
+
+  
+  
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

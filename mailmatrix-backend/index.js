@@ -8,7 +8,7 @@ dotenv.config();
 
 const folderRoutes = require("./routes/folderRoutes");
 const emailRoutes = require("./routes/emailRoutes");
-
+import path from "path";
 const app = express();
 
 // ✅ Middleware
@@ -39,6 +39,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ Connected to MongoDB");
     const PORT = process.env.PORT || 5000;
+    const __dirname=path.resolve();
     app.listen(PORT, () => {
       console.log(`🚀 Server running on http://localhost:${PORT}`);
     });
